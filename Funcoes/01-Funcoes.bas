@@ -16,6 +16,6 @@ Function RemoveDuplicates(ByVal varArray As Variant)
           .Add varValue, Nothing
         End If
       Next
-      remove_duplicate = .keys
+      RemoveDuplicates = .keys
     End With
 End Function

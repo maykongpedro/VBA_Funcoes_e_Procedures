@@ -1,3 +1,4 @@
+Option Explicit
 
 ' Procedure : TurnOffFunctionality
 ' Source    : www.ExcelMacroMastery.com
@@ -39,7 +40,7 @@ Sub CopiarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRe
     nl = Cells(Rows.count, colini).End(xlUp).Row
     nc = ncols
     If nl > 0 And nc > 0 Then
-        varRef = Range(Cells(linini, colini), Cells(linini + nl - 1, colini + nc - 1))
+        varRef = Range(Cells(linini, colini), Cells(linini + nl - 2, colini + nc - 1))
     End If
 End Sub
 
@@ -56,3 +57,24 @@ Sub ColarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRef
     Range(Cells(linini, colini), Cells(linini + 500000, colini + ncols - 1)).ClearContents
     Range(Cells(linini, colini), Cells(linini, colini)).Resize(UBound(varRef, 1), ncols) = varRef
 End Sub
+
+' Procedure : RemoveDuplicates
+' Source    : https://ferramentasexcelvba.wordpress.com/
+' Author    : Arnaldo Gunzi
+' Purpose   : Remove duplicates from a unique column array
+' https://ferramentasexcelvba.wordpress.com/
+Function RemoveDuplicates(ByVal varArray As Variant)
+    ' \\ Declaração de variáveis
+    Dim varValue As Variant
+    
+    ' \\ Cria o objeto dictionary
+    With CreateObject("scripting.dictionary")
+      .CompareMode = vbTextCompare ' \\ Compara texto
+      For Each varValue In varArray '\\ Para cada valor na matriz
+       If Not Strings.Len(varValue) = 0 And Not .exists(varValue) Then '\\ Desconsidera valores vazios, alterar esta linha caso queira considerar
+          .Add varValue, Nothing
+        End If
+      Next
+      RemoveDuplicates = .keys
+    End With
+End Function
