@@ -1,3 +1,5 @@
+Attribute VB_Name = "modTools"
+
 Option Explicit
 
 ' Procedure : TurnOffFunctionality
@@ -40,7 +42,7 @@ Sub CopiarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRe
     nl = Cells(Rows.count, colini).End(xlUp).Row
     nc = ncols
     If nl > 0 And nc > 0 Then
-        varRef = Range(Cells(linini, colini), Cells(linini + nl - 2, colini + nc - 1))
+        varRef = Range(Cells(linini, colini), Cells(nl, colini + nc - 1))
     End If
 End Sub
 
