@@ -29,7 +29,7 @@ End Sub
 ' Author    : Arnaldo Gunzi
 ' Purpose   : Copy data from a range to an array inside the vba memory
 ' https://ferramentasexcelvba.wordpress.com/
-Sub CopiarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRef As Variant, Optional nomeSht As String = "", Optional maxLin As Long = 10 ^ 6)
+Public Sub CopiarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRef As Variant, Optional nomeSht As String = "", Optional maxLin As Long = 10 ^ 6)
 'Copia dados da planilha nomeSht, a comecas da linIni e colIni, para varRef
     Dim nl As Long, nc As Long
     If nomeSht <> "" Then
@@ -48,11 +48,39 @@ End Sub
 ' Author    : Arnaldo Gunzi
 ' Purpose   : Paste data from an array to a range
 ' https://ferramentasexcelvba.wordpress.com/
-Sub ColarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRef As Variant, Optional nomeSht As String = "", Optional maxLin As Long = 10 ^ 6)
+Public Sub ColarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRef As Variant, Optional nomeSht As String = "", Optional maxLin As Long = 10 ^ 6)
     If nomeSht <> "" Then
             Sheets(nomeSht).Activate
     End If
     
     Range(Cells(linini, colini), Cells(linini + 500000, colini + ncols - 1)).ClearContents
     Range(Cells(linini, colini), Cells(linini, colini)).Resize(UBound(varRef, 1), ncols) = varRef
+End Sub
+
+' Procedure : VisualizarPlanilha
+' Source    : 
+' Author    : Maykon G. Pedro
+' Purpose   : Hide all sheets but turn visible the sheeet 'PlanName'
+' Utils to organize menu and panels in a workbook
+Public Sub VisualizarPlanilha(ByVal PlanName As String)
+    
+    On Error GoTo ErrorHandler
+    Dim i As Integer, planilha As Worksheet, nome_planilha As String
+    Worksheets(PlanName).Visible = True
+    For i = 1 To Sheets.Count
+        Set planilha = Sheets(i)
+        nome_planilha = planilha.Name
+        If nome_planilha <> PlanName Then
+            planilha.Visible = False
+        End If
+    Next i
+    
+    Exit Sub
+    
+ErrorHandler:
+    If Err.Number = 9 Then
+        MsgBox "Planilha não encontrada!", Title:="Aviso!"
+    Else
+        MsgBox "Erro encontrado, tipo: " & Err.Description, Title:="Aviso!"
+    End If
 End Sub

@@ -80,3 +80,31 @@ Function RemoveDuplicates(ByVal varArray As Variant)
       RemoveDuplicates = .keys
     End With
 End Function
+
+' Procedure : VisualizarPlanilha
+' Source    : 
+' Author    : Maykon G. Pedro
+' Purpose   : Hide all sheets but turn visible the sheeet 'PlanName'
+' Utils to organize menu and panels in a workbook
+Public Sub VisualizarPlanilha(ByVal PlanName As String)
+    
+    On Error GoTo ErrorHandler
+    Dim i As Integer, planilha As Worksheet, nome_planilha As String
+    Worksheets(PlanName).Visible = True
+    For i = 1 To Sheets.Count
+        Set planilha = Sheets(i)
+        nome_planilha = planilha.Name
+        If nome_planilha <> PlanName Then
+            planilha.Visible = False
+        End If
+    Next i
+    
+    Exit Sub
+    
+ErrorHandler:
+    If Err.Number = 9 Then
+        MsgBox "Planilha não encontrada!", Title:="Aviso!"
+    Else
+        MsgBox "Erro encontrado, tipo: " & Err.Description, Title:="Aviso!"
+    End If
+End Sub
