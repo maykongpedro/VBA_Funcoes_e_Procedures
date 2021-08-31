@@ -29,6 +29,13 @@ End Sub
 ' Author    : Arnaldo Gunzi
 ' Purpose   : Copy data from a range to an array inside the vba memory
 ' https://ferramentasexcelvba.wordpress.com/
+' @param   'integer'      linini        Linha inicial na planila
+' @param   'integer'      colini        Coluna inicial na planilha
+' @param   'long'         ncols         Quantidade de colunas para obter
+' @param   'variant'      varRef        Variável (array) que irá receber os dados
+' @param   'string'       nomeSht       Nome da planilha onde estão os dados
+' @param   'long'         maxLin        Quantidade máxima de linhas
+' @return  'variant'      varRef        Variável (array) com os dados obtidos
 Public Sub CopiarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRef As Variant, Optional nomeSht As String = "", Optional maxLin As Long = 10 ^ 6)
 'Copia dados da planilha nomeSht, a comecas da linIni e colIni, para varRef
     Dim nl As Long, nc As Long
@@ -43,11 +50,19 @@ Public Sub CopiarDados(linini As Integer, colini As Integer, ncols As Long, ByRe
     End If
 End Sub
 
+
 ' Procedure : ColarDados
 ' Source    : https://ferramentasexcelvba.wordpress.com/
 ' Author    : Arnaldo Gunzi
 ' Purpose   : Paste data from an array to a range
 ' https://ferramentasexcelvba.wordpress.com/
+' @param   'integer'      linini        Linha inicial na planila
+' @param   'integer'      colini        Coluna inicial na planilha
+' @param   'long'         ncols         Quantidade de colunas para despejar
+' @param   'variant'      varRef        Variável (array) que contém os dados
+' @param   'string'       nomeSht       Nome da planilha onde os dados serão despejados
+' @param   'long'         maxLin        Quantidade máxima de linhas
+' @return  ''             varRef        Despeja os dados no local desejado
 Public Sub ColarDados(linini As Integer, colini As Integer, ncols As Long, ByRef varRef As Variant, Optional nomeSht As String = "", Optional maxLin As Long = 10 ^ 6)
     If nomeSht <> "" Then
             Sheets(nomeSht).Activate
@@ -56,6 +71,7 @@ Public Sub ColarDados(linini As Integer, colini As Integer, ncols As Long, ByRef
     Range(Cells(linini, colini), Cells(linini + 500000, colini + ncols - 1)).ClearContents
     Range(Cells(linini, colini), Cells(linini, colini)).Resize(UBound(varRef, 1), ncols) = varRef
 End Sub
+
 
 ' Procedure : VisualizarPlanilha
 ' Source    : 
