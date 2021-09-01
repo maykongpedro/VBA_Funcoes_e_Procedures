@@ -1,4 +1,6 @@
 
+'----------------------------------------------------------------------------------------
+
 ' Procedure : TurnOffFunctionality
 ' Source    : www.ExcelMacroMastery.com
 ' Author    : Paul Kelly
@@ -10,6 +12,8 @@ Public Sub TurnOffFunctionality()
     Application.EnableEvents = False
     Application.ScreenUpdating = False
 End Sub
+
+'----------------------------------------------------------------------------------------
 
 ' Procedure : TurnOnFunctionality
 ' Source    : www.ExcelMacroMastery.com
@@ -23,6 +27,7 @@ Public Sub TurnOnFunctionality()
     Application.ScreenUpdating = True
 End Sub
 
+'----------------------------------------------------------------------------------------
 
 ' Procedure : CopiarDados
 ' Source    : https://ferramentasexcelvba.wordpress.com/
@@ -50,6 +55,7 @@ Public Sub CopiarDados(linini As Integer, colini As Integer, ncols As Long, ByRe
     End If
 End Sub
 
+'----------------------------------------------------------------------------------------
 
 ' Procedure : ColarDados
 ' Source    : https://ferramentasexcelvba.wordpress.com/
@@ -72,12 +78,15 @@ Public Sub ColarDados(linini As Integer, colini As Integer, ncols As Long, ByRef
     Range(Cells(linini, colini), Cells(linini, colini)).Resize(UBound(varRef, 1), ncols) = varRef
 End Sub
 
+'----------------------------------------------------------------------------------------
 
 ' Procedure : VisualizarPlanilha
-' Source    : 
+' Source    : maykonglaffite@gmail.com
 ' Author    : Maykon G. Pedro
 ' Purpose   : Hide all sheets but turn visible the sheeet 'PlanName'
 ' Utils to organize menu and panels in a workbook
+' @param   'string'       PlanName      Nome da planilha que se quer exibir
+' @return  ''                           Exibi a planilha desejada e oculta todas as outras
 Public Sub VisualizarPlanilha(ByVal PlanName As String)
     
     On Error GoTo ErrorHandler
@@ -100,3 +109,6 @@ ErrorHandler:
         MsgBox "Erro encontrado, tipo: " & Err.Description, Title:="Aviso!"
     End If
 End Sub
+
+'----------------------------------------------------------------------------------------
+

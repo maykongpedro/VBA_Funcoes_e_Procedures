@@ -1,9 +1,12 @@
 
-' Procedure : RemoveDuplicates
+' Function  : RemoveDuplicates
 ' Source    : https://ferramentasexcelvba.wordpress.com/
 ' Author    : Arnaldo Gunzi
 ' Purpose   : Remove duplicates from a unique column array
 ' https://ferramentasexcelvba.wordpress.com/
+' @param   'variant'      varArray      Vetor com os dados que contém duplicatadas
+' @return  'varaint'      newArray      Vetor com os dados únicos.
+' @example                             'newArrayUniqueData = RemoveDuplicates(ArrayExampleDuplicates)'
 Function RemoveDuplicates(ByVal varArray As Variant)
     ' \\ Declaração de variáveis
     Dim varValue As Variant
@@ -19,3 +22,5 @@ Function RemoveDuplicates(ByVal varArray As Variant)
       RemoveDuplicates = .keys
     End With
 End Function
+
+'----------------------------------------------------------------------------------------
